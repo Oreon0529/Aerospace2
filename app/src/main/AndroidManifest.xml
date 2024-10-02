@@ -14,22 +14,32 @@
         android:theme="@style/AppTheme.NoActionBar"
         tools:targetApi="31"
         android:usesCleartextTraffic="true">
+
+        <!-- RegisterActivity 등록 -->
         <activity
             android:name=".RegisterActivity"
             android:exported="false" />
+
+        <!-- LoginActivity 등록 -->
         <activity
             android:name=".LoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity"
-            android:label="MainActivity"
-            android:theme="@style/AppTheme.NoActionBar">
-        </activity>
-    </application>
 
+        <!-- DashboardActivity 등록 -->
+        <activity
+            android:name=".MainActivity" />
+        <activity android:name=".FloorActivity" />
+        <activity android:name=".LockerAreaActivity" />
+        <activity android:name=".LockerGridActivity" />
+        <activity android:name=".LockerArea5Activity" />
+        <activity android:name=".LockerDetailActivity" />
+
+
+
+    </application>
 </manifest>

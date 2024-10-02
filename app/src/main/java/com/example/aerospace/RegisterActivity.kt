@@ -11,6 +11,7 @@ import android.widget.Spinner
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import org.json.JSONObject
@@ -81,8 +82,8 @@ class RegisterActivity : AppCompatActivity() {
                         dialog!!.show()
                         idText.isEnabled = false
                         validate = true
-                        idText.setBackgroundColor(resources.getColor(R.color.colorGray))
-                        validateButton.setBackgroundColor(resources.getColor(R.color.colorGray))
+                        idText.setBackgroundColor(ContextCompat.getColor(this, R.color.colorGray))
+                        validateButton.setBackgroundColor(ContextCompat.getColor(this, R.color.colorGray))
                     } else {
                         val builder = AlertDialog.Builder(this@RegisterActivity)
                         dialog = builder.setMessage("사용할 수 없는 아이디입니다.").setNegativeButton("확인", null).create()

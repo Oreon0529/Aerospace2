@@ -29,7 +29,7 @@ class LoginActivity : AppCompatActivity() {
         }
 
         val registerButton: TextView = findViewById<TextView>(R.id.registerButton)
-        registerButton.setOnClickListener{
+        registerButton.setOnClickListener {
             val registerIntent = Intent(this@LoginActivity, RegisterActivity::class.java)
             startActivity(registerIntent)
         }
@@ -53,6 +53,7 @@ class LoginActivity : AppCompatActivity() {
                             .create()
                         dialog?.show()
 
+                        // DashboardActivity로 이동
                         val intent = Intent(this@LoginActivity, MainActivity::class.java)
                         startActivity(intent)
                         finish()
