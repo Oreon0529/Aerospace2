@@ -1,9 +1,12 @@
 package com.example.aerospace
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
 import android.widget.Button
 import android.widget.ListView
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -31,6 +34,23 @@ class MainActivity : AppCompatActivity() {
         lockerButton.setOnClickListener {
             val intent = Intent(this, FloorActivity::class.java)
             startActivity(intent)
+        }
+    }
+
+    var pressedTime: Long = 0 //'뒤로가기' 버튼 클릭했을 때의 시간
+
+    @SuppressLint("MissingSuperCall")
+    override fun onBackPressed() {
+        //마지막으로 누른 '뒤로가기' 버튼 클릭 시간이 이전의 '뒤로가기' 버튼 클릭 시간과의 차이가 2초보다 크면
+
+        if (System.currentTimeMillis() > pressedTime + 2000) {
+            //현재 시간을 pressedTime 에 저장
+            pressedTime = System.currentTimeMillis()
+            Toast.makeText(applicationContext, "한번 더 누르면 종료", Toast.LENGTH_SHORT).show()
+        } else {
+            Toast.makeText(applicationContext, "종료 완료", Toast.LENGTH_SHORT).show()
+            // 앱 종료
+            finish()
         }
     }
 }

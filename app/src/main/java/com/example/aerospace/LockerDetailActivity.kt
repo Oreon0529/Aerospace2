@@ -19,6 +19,7 @@ import java.text.SimpleDateFormat
 
 class LockerDetailActivity : AppCompatActivity() {
     private lateinit var database: DatabaseReference
+    private var studentId: String? = null  // 초기값을 null로 설정
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -61,7 +62,7 @@ class LockerDetailActivity : AppCompatActivity() {
         // 신청 버튼 처리
         val applyButton: Button = findViewById(R.id.applyButton)
         applyButton.setOnClickListener {
-            checkLockerStatusAndApply(lockerNumber, floorNumber)
+            showStudentIdInputDialog(lockerNumber, floorNumber) // 학번 입력 창 띄우기
         }
 
         // 취소 버튼 처리
@@ -71,27 +72,28 @@ class LockerDetailActivity : AppCompatActivity() {
         }
     }
 
-    private fun updateLockerInfo(lockerNumber: Int) {
-        database.child("Locker$lockerNumber").addValueEventListener(object : ValueEventListener {
-            override fun onDataChange(dataSnapshot: DataSnapshot) {
-                // Firebase에서 데이터 가져오기
-                val isUsed = dataSnapshot.child("isUsed").getValue(Boolean::class.java) ?: false
-                val useUntil = dataSnapshot.child("useUntil").getValue(String::class.java) ?: "No Data"
+    // 신청 버튼을 눌렀을 때 학번 입력 UI를 띄우는 함수
+    private fun showStudentIdInputDialog(lockerNumber: Int, floorNumber: Int) {
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle("학번 입력")
 
-                // UI에 사물함 정보 표시
-                val lockerNumberTextView: TextView = findViewById(R.id.lockerNumberTextView)
-                val lockerStatusTextView: TextView = findViewById(R.id.lockerStatusTextView)
-                val usagePeriodTextView: TextView = findViewById(R.id.usagePeriodTextView)
+        val input = EditText(this)
+        builder.setView(input)
 
-                lockerNumberTextView.text = "사물함 번호: $lockerNumber"
-                lockerStatusTextView.text = if (isUsed) "사용 중" else "비어 있음"
-                usagePeriodTextView.text = "사용 기간: $useUntil"
+        builder.setPositiveButton("신청") { dialog, _ ->
+            studentId = input.text.toString()
+            if (!studentId.isNullOrEmpty()) {
+                // 학번 입력 후 로직 진행
+                checkLockerStatusAndApply(lockerNumber, floorNumber)
+            } else {
+                Toast.makeText(this, "학번을 입력하세요", Toast.LENGTH_SHORT).show()
             }
+            dialog.dismiss()
+        }
 
-            override fun onCancelled(databaseError: DatabaseError) {
-                Toast.makeText(this@LockerDetailActivity, "사물함 정보를 불러오는 데 실패했습니다.", Toast.LENGTH_SHORT).show()
-            }
-        })
+        builder.setNegativeButton("취소") { dialog, _ -> dialog.cancel() }
+
+        builder.show()
     }
 
     // 신청 버튼 처리
@@ -100,51 +102,40 @@ class LockerDetailActivity : AppCompatActivity() {
             val isUsed = dataSnapshot.child("isUsed").getValue(Boolean::class.java) ?: false
 
             if (!isUsed) {
-                showStudentIdInputDialog(this, lockerNumber, floorNumber)
+                checkStudentLockerLimit(lockerNumber, floorNumber)
             } else {
-                Toast.makeText(this, "이미 사용 중인 사물함입니다.", Toast.LENGTH_SHORT).show() // 사용 중일 때 에러 메시지
+                Toast.makeText(this, "이미 사용 중인 사물함입니다.", Toast.LENGTH_SHORT).show()
             }
         }.addOnFailureListener {
             Toast.makeText(this, "사물함 정보를 불러오는 데 실패했습니다.", Toast.LENGTH_SHORT).show()
         }
     }
 
-    // 취소 버튼 처리
-    private fun checkLockerStatusAndCancel(lockerNumber: Int, floorNumber: Int) {
-        database.child("Locker$lockerNumber").get().addOnSuccessListener { dataSnapshot ->
-            val isUsed = dataSnapshot.child("isUsed").getValue(Boolean::class.java) ?: false
+    // 해당 학번이 1개 이상의 사물함을 사용 중인지 확인 (수정된 부분)
+    private fun checkStudentLockerLimit(lockerNumber: Int, floorNumber: Int) {
+        val databasePath = if (floorNumber == 2) "Lockers" else "Lockers5"
+        val databaseRef = FirebaseDatabase.getInstance("https://locker-d8b7d-default-rtdb.asia-southeast1.firebasedatabase.app")
+            .getReference(databasePath)
 
-            if (isUsed) {
-                showStudentIdInputDialogForCancellation(this, lockerNumber, floorNumber)
+        // 층 내에서 학번으로 사용 중인 사물함 개수 체크
+        databaseRef.orderByChild("studentId").equalTo(studentId).get().addOnSuccessListener { snapshot ->
+            var lockerCount = 0
+
+            for (lockerSnapshot in snapshot.children) {
+                val isUsed = lockerSnapshot.child("isUsed").getValue(Boolean::class.java) ?: false
+                if (isUsed) {
+                    lockerCount++
+                }
+            }
+//허허
+            if (lockerCount >= 1) {  // 층당 1개로 제한
+                Toast.makeText(this, "해당 층에서 이미 1개의 사물함을 사용 중입니다.", Toast.LENGTH_SHORT).show()
             } else {
-                Toast.makeText(this, "비어 있는 사물함은 취소할 수 없습니다.", Toast.LENGTH_SHORT).show() // 비어 있는 사물함 취소 시 에러 메시지
+                applyForLocker(lockerNumber, studentId!!, floorNumber, this)
             }
         }.addOnFailureListener {
             Toast.makeText(this, "사물함 정보를 불러오는 데 실패했습니다.", Toast.LENGTH_SHORT).show()
         }
-    }
-
-    // 신청 버튼을 눌렀을 때 학번 입력 UI를 띄우는 함수
-    private fun showStudentIdInputDialog(context: Context, lockerNumber: Int, floorNumber: Int) {
-        val builder = AlertDialog.Builder(context)
-        builder.setTitle("학번 입력")
-
-        val input = EditText(context)
-        builder.setView(input)
-
-        builder.setPositiveButton("신청") { dialog, _ ->
-            val studentId = input.text.toString()
-            if (studentId.isNotEmpty()) {
-                applyForLocker(lockerNumber, studentId, floorNumber, context)
-            } else {
-                Toast.makeText(context, "학번을 입력하세요", Toast.LENGTH_SHORT).show()
-            }
-            dialog.dismiss()
-        }
-
-        builder.setNegativeButton("취소") { dialog, _ -> dialog.cancel() }
-
-        builder.show()
     }
 
     // 사물함 신청 함수
@@ -175,6 +166,21 @@ class LockerDetailActivity : AppCompatActivity() {
         }
     }
 
+    // 취소 버튼 처리
+    private fun checkLockerStatusAndCancel(lockerNumber: Int, floorNumber: Int) {
+        database.child("Locker$lockerNumber").get().addOnSuccessListener { dataSnapshot ->
+            val isUsed = dataSnapshot.child("isUsed").getValue(Boolean::class.java) ?: false
+
+            if (isUsed) {
+                showStudentIdInputDialogForCancellation(this, lockerNumber, floorNumber)
+            } else {
+                Toast.makeText(this, "비어 있는 사물함은 취소할 수 없습니다.", Toast.LENGTH_SHORT).show()
+            }
+        }.addOnFailureListener {
+            Toast.makeText(this, "사물함 정보를 불러오는 데 실패했습니다.", Toast.LENGTH_SHORT).show()
+        }
+    }
+
     // 취소 버튼을 눌렀을 때 학번 입력 UI를 띄우는 함수
     private fun showStudentIdInputDialogForCancellation(context: Context, lockerNumber: Int, floorNumber: Int) {
         val builder = AlertDialog.Builder(context)
@@ -184,9 +190,9 @@ class LockerDetailActivity : AppCompatActivity() {
         builder.setView(input)
 
         builder.setPositiveButton("확인") { dialog, _ ->
-            val studentId = input.text.toString()
-            if (studentId.isNotEmpty()) {
-                cancelLocker(lockerNumber, studentId, floorNumber, context)
+            studentId = input.text.toString()
+            if (!studentId.isNullOrEmpty()) {
+                cancelLocker(lockerNumber, studentId!!, floorNumber, context)
             } else {
                 Toast.makeText(context, "학번을 입력하세요", Toast.LENGTH_SHORT).show()
             }
@@ -208,7 +214,7 @@ class LockerDetailActivity : AppCompatActivity() {
             val storedStudentId = dataSnapshot.child("studentId").getValue(String::class.java) ?: ""
             val isUsed = dataSnapshot.child("isUsed").getValue(Boolean::class.java) ?: false // 사용 중 여부 확인
 
-            if (!isUsed) { // 비어 있는 사물함에 대해 취소 시 에러 메시지
+            if (!isUsed) {
                 Toast.makeText(context, "비어 있는 사물함은 취소할 수 없습니다.", Toast.LENGTH_SHORT).show()
             } else if (storedStudentId == studentId) {
                 val lockerUpdate = mapOf(
@@ -228,5 +234,29 @@ class LockerDetailActivity : AppCompatActivity() {
         }.addOnFailureListener {
             Toast.makeText(context, "사물함 정보를 불러오는 데 실패했습니다.", Toast.LENGTH_SHORT).show()
         }
+    }
+
+    // 사물함 정보를 업데이트하는 함수
+    private fun updateLockerInfo(lockerNumber: Int) {
+        database.child("Locker$lockerNumber").addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                // Firebase에서 데이터 가져오기
+                val isUsed = dataSnapshot.child("isUsed").getValue(Boolean::class.java) ?: false
+                val useUntil = dataSnapshot.child("useUntil").getValue(String::class.java) ?: "No Data"
+
+                // UI에 사물함 정보 표시
+                val lockerNumberTextView: TextView = findViewById(R.id.lockerNumberTextView)
+                val lockerStatusTextView: TextView = findViewById(R.id.lockerStatusTextView)
+                val usagePeriodTextView: TextView = findViewById(R.id.usagePeriodTextView)
+
+                lockerNumberTextView.text = "사물함 번호: $lockerNumber"
+                lockerStatusTextView.text = if (isUsed) "사용 중" else "비어 있음"
+                usagePeriodTextView.text = "사용 기간: $useUntil"
+            }
+
+            override fun onCancelled(databaseError: DatabaseError) {
+                Toast.makeText(this@LockerDetailActivity, "사물함 정보를 불러오는 데 실패했습니다.", Toast.LENGTH_SHORT).show()
+            }
+        })
     }
 }

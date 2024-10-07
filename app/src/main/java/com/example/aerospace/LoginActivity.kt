@@ -1,10 +1,12 @@
 package com.example.aerospace
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
@@ -13,6 +15,7 @@ import androidx.core.view.WindowInsetsCompat
 import com.android.volley.RequestQueue
 import com.android.volley.toolbox.Volley
 import org.json.JSONObject
+
 
 class LoginActivity : AppCompatActivity() {
 
@@ -79,5 +82,22 @@ class LoginActivity : AppCompatActivity() {
         super.onStop()
         dialog?.dismiss()
         dialog = null
+    }
+
+    var pressedTime: Long = 0 //'뒤로가기' 버튼 클릭했을 때의 시간
+
+    @SuppressLint("MissingSuperCall")
+    override fun onBackPressed() {
+        //마지막으로 누른 '뒤로가기' 버튼 클릭 시간이 이전의 '뒤로가기' 버튼 클릭 시간과의 차이가 2초보다 크면
+
+        if (System.currentTimeMillis() > pressedTime + 2000) {
+            //현재 시간을 pressedTime 에 저장
+            pressedTime = System.currentTimeMillis()
+            Toast.makeText(applicationContext, "한번 더 누르면 종료", Toast.LENGTH_SHORT).show()
+        } else {
+            Toast.makeText(applicationContext, "종료 완료", Toast.LENGTH_SHORT).show()
+            // 앱 종료
+            finish()
+        }
     }
 }
