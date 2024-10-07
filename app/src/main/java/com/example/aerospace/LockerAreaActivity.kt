@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import android.widget.Button
+import android.widget.ImageButton
 
 class LockerAreaActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -16,6 +17,7 @@ class LockerAreaActivity : AppCompatActivity() {
         val area3Button: Button = findViewById(R.id.area3Button)
         val area4Button: Button = findViewById(R.id.area4Button)
         val area5Button: Button = findViewById(R.id.area5Button)
+        val mapButton: ImageButton = findViewById(R.id.mapButton)
 
         // 각 버튼 클릭 시 해당 영역으로 이동
         area1Button.setOnClickListener {
@@ -36,6 +38,11 @@ class LockerAreaActivity : AppCompatActivity() {
 
         area5Button.setOnClickListener {
             openLockerArea(5, 2)  // 2층으로 설정
+        }
+
+        mapButton.setOnClickListener{
+            val intent = Intent(this, ShowFloorMap_2F::class.java)
+            startActivity(intent)
         }
     }
 

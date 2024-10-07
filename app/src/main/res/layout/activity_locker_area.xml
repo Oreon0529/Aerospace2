@@ -7,6 +7,20 @@
     android:layout_height="match_parent"
     tools:context=".LockerAreaActivity">
 
+    <!-- 돋보기 모양의 회색 버튼 추가 -->
+
+    <ImageButton
+        android:id="@+id/mapButton"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_margin="8dp"
+        android:background="?android:attr/selectableItemBackground"
+        android:src="@android:drawable/ic_menu_search"
+        android:contentDescription="@string/bachi"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:tint="#000000" />
+
     <!-- 각 사물함 영역을 선택할 버튼 -->
 
     <Button

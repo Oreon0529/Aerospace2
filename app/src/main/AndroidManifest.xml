@@ -30,7 +30,7 @@
             </intent-filter>
         </activity>
 
-        <!-- DashboardActivity 등록 -->
+        <!-- MainActivity 등록 -->
         <activity
             android:name=".MainActivity" />
         <activity android:name=".FloorActivity" />
@@ -39,6 +39,21 @@
         <activity android:name=".LockerArea5Activity" />
         <activity android:name=".LockerDetailActivity" />
 
+        <activity android:name=".ShowFloorMap_2F"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name=".ShowFloorMap_5F"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
 
 
     </application>

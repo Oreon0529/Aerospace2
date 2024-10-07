@@ -7,6 +7,18 @@
     android:layout_height="match_parent"
     tools:context=".LockerArea5Activity">
 
+    <ImageButton
+        android:id="@+id/mapButton5"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_margin="8dp"
+        android:background="?android:attr/selectableItemBackground"
+        android:src="@android:drawable/ic_menu_search"
+        android:contentDescription="@string/bachi"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:tint="#000000" />
+
     <!-- 5-1 영역 버튼 -->
     <Button
         android:id="@+id/buttonArea5_1"
