@@ -19,5 +19,5 @@
         android:layout_width="match_parent"
         android:layout_height="438dp"
         android:contentDescription="@string/map_of_2floor"
-        android:src="@drawable/stop" />
+        android:src="@drawable/secondmap" />
 </LinearLayout>
