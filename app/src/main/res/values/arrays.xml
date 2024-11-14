@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="major">
+        <item>항공우주공학부(미선택)</item>
+        <item>항공우주공학부(항공우주시스템전공)</item>
+        <item>항공우주공학부(항공우주모빌리티전공)</item>
+        <item>우주항공방산융합학부</item>
+    </string-array>
+</resources>

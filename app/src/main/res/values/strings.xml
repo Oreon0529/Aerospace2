@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">Aerospace</string>
+    <string name="bachi">배치 보기</string>
+    <string name="map_of_2floor"></string>
+    <string name="map_of_5floor"></string>
+</resources>

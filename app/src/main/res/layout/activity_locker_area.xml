@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".LockerAreaActivity">
+
+    <!-- 돋보기 모양의 회색 버튼 추가 -->
+
+    <ImageButton
+        android:id="@+id/mapButton"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_margin="8dp"
+        android:background="?android:attr/selectableItemBackground"
+        android:src="@android:drawable/ic_menu_search"
+        android:contentDescription="@string/bachi"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:tint="#000000" />
+
+    <!-- 각 사물함 영역을 선택할 버튼 -->
+
+    <Button
+        android:id="@+id/area1Button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="2-1 영역"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/area2Button"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <Button
+        android:id="@+id/area2Button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="2-2 영역"
+        app:layout_constraintTop_toBottomOf="@id/area1Button"
+        app:layout_constraintBottom_toTopOf="@id/area3Button"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <Button
+        android:id="@+id/area3Button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="2-3 영역"
+        app:layout_constraintTop_toBottomOf="@id/area2Button"
+        app:layout_constraintBottom_toTopOf="@id/area4Button"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <Button
+        android:id="@+id/area4Button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="2-4 영역"
+        app:layout_constraintTop_toBottomOf="@id/area3Button"
+        app:layout_constraintBottom_toTopOf="@id/area5Button"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <Button
+        android:id="@+id/area5Button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="2-5 영역"
+        app:layout_constraintTop_toBottomOf="@id/area4Button"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

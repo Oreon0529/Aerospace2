@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".LockerArea5Activity">
+
+    <ImageButton
+        android:id="@+id/mapButton5"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_margin="8dp"
+        android:background="?android:attr/selectableItemBackground"
+        android:src="@android:drawable/ic_menu_search"
+        android:contentDescription="@string/bachi"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:tint="#000000" />
+
+    <!-- 5-1 영역 버튼 -->
+    <Button
+        android:id="@+id/buttonArea5_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="5-1 영역"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/buttonArea5_2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- 5-2 영역 버튼 -->
+    <Button
+        android:id="@+id/buttonArea5_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="5-2 영역"
+        app:layout_constraintTop_toBottomOf="@id/buttonArea5_1"
+        app:layout_constraintBottom_toTopOf="@id/buttonArea5_3"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- 5-3 영역 버튼 -->
+    <Button
+        android:id="@+id/buttonArea5_3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="5-3 영역"
+        app:layout_constraintTop_toBottomOf="@id/buttonArea5_2"
+        app:layout_constraintBottom_toTopOf="@id/buttonArea5_4"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- 5-4 영역 버튼 -->
+    <Button
+        android:id="@+id/buttonArea5_4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="5-4 영역"
+        app:layout_constraintTop_toBottomOf="@id/buttonArea5_3"
+        app:layout_constraintBottom_toTopOf="@id/buttonArea5_5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- 5-5 영역 버튼 -->
+    <Button
+        android:id="@+id/buttonArea5_5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="5-5 영역"
+        app:layout_constraintTop_toBottomOf="@id/buttonArea5_4"
+        app:layout_constraintBottom_toTopOf="@id/buttonArea5_6"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- 5-6 영역 버튼 -->
+    <Button
+        android:id="@+id/buttonArea5_6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="5-6 영역"
+        app:layout_constraintTop_toBottomOf="@id/buttonArea5_5"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

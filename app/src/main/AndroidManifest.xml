@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+    <uses-permission android:name="android.permission.INTERNET"></uses-permission>
+
+    <application
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme.NoActionBar"
+        tools:targetApi="31"
+        android:usesCleartextTraffic="true">
+
+        <!-- RegisterActivity 등록 -->
+        <activity
+            android:name=".RegisterActivity"
+            android:exported="false" />
+
+        <!-- LoginActivity 등록 (앱의 메인 액티비티로 설정) -->
+        <activity
+            android:name=".LoginActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- MainActivity 등록 -->
+        <activity android:name=".MainActivity" />
+        <activity android:name=".FloorActivity" />
+        <activity android:name=".LockerAreaActivity" />
+        <activity android:name=".LockerGridActivity" />
+        <activity android:name=".LockerArea5Activity" />
+        <activity android:name=".LockerDetailActivity" />
+
+        <!-- ShowFloorMap_2F 등록 (MAIN 및 LAUNCHER 필터 제거) -->
+        <activity android:name=".ShowFloorMap_2F"
+            android:exported="true" />
+
+        <!-- ShowFloorMap_5F 등록 (MAIN 및 LAUNCHER 필터 제거) -->
+        <activity android:name=".ShowFloorMap_5F"
+            android:exported="true" />
+
+    </application>
+</manifest>
