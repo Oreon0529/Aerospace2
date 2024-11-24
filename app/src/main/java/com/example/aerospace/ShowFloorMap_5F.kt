@@ -11,6 +11,6 @@ class ShowFloorMap_5F : AppCompatActivity() {
 
         // ImageView에 이미지를 설정할 수 있습니다.
         val imageView: ImageView = findViewById(R.id.imageView)
-        imageView.setImageResource(R.drawable.stop) // your_image는 보여줄 이미지의 리소스 ID
+        imageView.setImageResource(R.drawable.fifthmap) // your_image는 보여줄 이미지의 리소스 ID
     }
 }
