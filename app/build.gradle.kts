@@ -50,6 +50,7 @@ dependencies {
     implementation("com.android.volley:volley:1.2.1")
     implementation("androidx.core:core-ktx:1.10.0") // AndroidX 최신 버전
 
+
     // Firebase BOM을 통해 버전 관리
     implementation(platform("com.google.firebase:firebase-bom:33.3.0"))
     implementation("com.google.firebase:firebase-analytics")
