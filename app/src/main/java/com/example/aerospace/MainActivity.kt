@@ -1,4 +1,5 @@
 package com.example.aerospace
+
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
@@ -6,7 +7,6 @@ import android.widget.Button
 import android.widget.ListView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-
 
 class MainActivity : AppCompatActivity() {
 
@@ -35,7 +35,14 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, FloorActivity::class.java)
             startActivity(intent)
         }
+        val utilButton2: Button = findViewById(R.id.utilButton2)
+        utilButton2.setOnClickListener {
+            val intent = Intent(this, MapViewer::class.java)
+            startActivity(intent)
+        }
     }
+
+
 
     var pressedTime: Long = 0 //'뒤로가기' 버튼 클릭했을 때의 시간
 

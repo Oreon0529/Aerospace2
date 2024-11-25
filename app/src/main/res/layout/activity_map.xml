@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="8dp">
+
+        <!-- Add your images here -->
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="718dp"
+            android:contentDescription="@string/groundfloor"
+            android:src="@drawable/map1" />
+
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="801dp"
+            android:contentDescription="@string/secondfloor"
+            android:src="@drawable/map2" />
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/sixthfloor"
+            android:src="@drawable/map6" />
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/seventhfloor"
+            android:src="@drawable/map7" />
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/eighthfloor"
+            android:src="@drawable/map8" />
+
+        <!-- Add more ImageViews as needed -->
+
+    </LinearLayout>
+</ScrollView>

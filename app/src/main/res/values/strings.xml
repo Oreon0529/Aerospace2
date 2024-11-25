@@ -3,4 +3,9 @@
     <string name="bachi">배치 보기</string>
     <string name="map_of_2floor"></string>
     <string name="map_of_5floor"></string>
+    <string name="groundfloor">GroundFloor</string>
+    <string name="secondfloor">SecondFloor</string>
+    <string name="eighthfloor">eighthFloor</string>
+    <string name="seventhfloor">seventhFloor</string>
+    <string name="sixthfloor">sixthFloor</string>
 </resources>
