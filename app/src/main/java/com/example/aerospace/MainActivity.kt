@@ -1,4 +1,5 @@
 package com.example.aerospace
+
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
@@ -15,6 +16,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        // 공지사항 초기화
         noticeListView = findViewById(R.id.noticeListView)
         noticeList = mutableListOf()
         noticeList.add(Notice("공지사항입니다.", "오준혁", "2024-10-01"))
@@ -30,6 +32,13 @@ class MainActivity : AppCompatActivity() {
         val lockerButton: Button = findViewById(R.id.lockerButton)
         lockerButton.setOnClickListener {
             val intent = Intent(this, FloorActivity::class.java)
+            startActivity(intent)
+        }
+
+        // 407동 지도 버튼 클릭 시 동작
+        val mapButton: Button = findViewById(R.id.utilButton2)
+        mapButton.setOnClickListener {
+            val intent = Intent(this, BuildingMapActivity::class.java)
             startActivity(intent)
         }
     }

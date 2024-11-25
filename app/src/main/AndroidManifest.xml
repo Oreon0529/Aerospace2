@@ -46,5 +46,10 @@
         <activity android:name=".ShowFloorMap_5F"
             android:exported="true" />
 
+        <!-- 새로운 BuildingMapActivity 등록 -->
+        <activity
+            android:name=".BuildingMapActivity"
+            android:exported="true" />
+
     </application>
 </manifest>
