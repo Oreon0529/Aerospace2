@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
@@ -12,4 +13,9 @@
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>
+=======
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.TradeFunc" parent="android:Theme.Material.Light.NoActionBar" />
+>>>>>>> d483333 (Initial commit)
 </resources>

@@ -1,4 +1,5 @@
 <resources>
+<<<<<<< HEAD
     <string name="app_name">Aerospace</string>
     <string name="bachi">배치 보기</string>
     <string name="map_of_2floor"></string>
@@ -9,3 +10,8 @@
     <string name="seventhfloor">seventhFloor</string>
     <string name="sixthfloor">sixthFloor</string>
 </resources>
+=======
+    <string name="app_name">TradeFunc</string>
+    <string name="rental_history_label">Rental History</string>
+</resources>
+>>>>>>> d483333 (Initial commit)

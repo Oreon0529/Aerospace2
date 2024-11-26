@@ -1,22 +1,38 @@
 {
   "project_info": {
+<<<<<<< HEAD
     "project_number": "512577600975",
     "firebase_url": "https://locker-d8b7d-default-rtdb.asia-southeast1.firebasedatabase.app",
     "project_id": "locker-d8b7d",
     "storage_bucket": "locker-d8b7d.appspot.com"
+=======
+    "project_number": "678488831910",
+    "project_id": "tradefunc-2a0ff",
+    "storage_bucket": "tradefunc-2a0ff.firebasestorage.app"
+>>>>>>> d483333 (Initial commit)
   },
   "client": [
     {
       "client_info": {
+<<<<<<< HEAD
         "mobilesdk_app_id": "1:512577600975:android:46df017a738bb3fd41a6ba",
         "android_client_info": {
           "package_name": "com.example.aerospace"
+=======
+        "mobilesdk_app_id": "1:678488831910:android:8b1f7451e68d624629c167",
+        "android_client_info": {
+          "package_name": "com.example.tradefunc"
+>>>>>>> d483333 (Initial commit)
         }
       },
       "oauth_client": [],
       "api_key": [
         {
+<<<<<<< HEAD
           "current_key": "AIzaSyAKDrglK9DKcCeN8mXq0aSpbg2fntTj3RA"
+=======
+          "current_key": "AIzaSyCd8PIlzr3CT9_tUSRFkA5pfRwF-AcLP6w"
+>>>>>>> d483333 (Initial commit)
         }
       ],
       "services": {
