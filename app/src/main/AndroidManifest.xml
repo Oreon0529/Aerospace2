@@ -51,5 +51,7 @@
             android:name=".BuildingMapActivity"
             android:exported="true" />
 
+        <activity android:name=".RentalActivity" />
+
     </application>
 </manifest>

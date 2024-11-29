@@ -20,6 +20,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var noticeListView: ListView
     private lateinit var adapter: NoticeListAdapter
     private lateinit var noticeList: MutableList<Notice>
+    private var pressedTime: Long = 0 // '뒤로가기' 버튼 클릭했을 때의 시간
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,6 +43,13 @@ class MainActivity : AppCompatActivity() {
         val mapButton: Button = findViewById(R.id.utilButton2)
         mapButton.setOnClickListener {
             val intent = Intent(this, BuildingMapActivity::class.java)
+            startActivity(intent)
+        }
+
+        // 물품 대여 버튼 클릭 시 동작 추가
+        val rentalButton: Button = findViewById(R.id.rentalButton)
+        rentalButton.setOnClickListener {
+            val intent = Intent(this, RentalActivity::class.java)
             startActivity(intent)
         }
 
@@ -103,14 +111,16 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    var pressedTime: Long = 0
-
     @SuppressLint("MissingSuperCall")
     override fun onBackPressed() {
+        //마지막으로 누른 '뒤로가기' 버튼 클릭 시간이 이전의 '뒤로가기' 버튼 클릭 시간과의 차이가 2초보다 크면
         if (System.currentTimeMillis() > pressedTime + 2000) {
+            //현재 시간을 pressedTime 에 저장
             pressedTime = System.currentTimeMillis()
-            Toast.makeText(applicationContext, "한번 더 누르면 종료됩니다.", Toast.LENGTH_SHORT).show()
+            Toast.makeText(applicationContext, "한번 더 누르면 종료", Toast.LENGTH_SHORT).show()
         } else {
+            Toast.makeText(applicationContext, "종료 완료", Toast.LENGTH_SHORT).show()
+            // 앱 종료
             finish()
         }
     }
